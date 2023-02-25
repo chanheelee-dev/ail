@@ -1,5 +1,12 @@
 # Jupyter Notebook
 *.ipynb_checkpoints
+test/*.ipynb
 
 # pyenv
 .python-version
+
+# pytest
+.pytest_cache
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
