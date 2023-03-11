@@ -30,9 +30,9 @@ if __name__ == "__main__":
     model, idata = inference(model)
 
     # TODO: Analysis for glm result
+    idata.posterior["y_model"] = idata.posterior["intercept"] + idata.posterior["slope"] * xr.DataArray(x)
     fig, ax = plt.subplots(figsize=(7, 7))
-    # idata.posterior["y_model"] = idata.posterior["intercept"] + idata.posterior["slope"] * xr.DataArray(x)
-    # az.plot_lm(idata=idata, y="y", num_samples=100, axes=ax, y_model="y_model")
-    # ax.set_title("Posterior predictive regression lines")
-    # ax.set_xlabel("x")
-    # fig.show()
+    ax.set_title("Posterior predictive regression lines")
+    az.plot_lm(idata=idata, y="y", num_samples=100, axes=ax, y_model="y_model")
+    ax.set_xlabel("x")
+    plt.show()
