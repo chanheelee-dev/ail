@@ -3,6 +3,7 @@ import arviz as az
 import xarray as xr
 import matplotlib.pyplot as plt
 
+
 def define_model(x, y):
     with pm.Model() as model:
         # Define priors
@@ -30,7 +31,9 @@ if __name__ == "__main__":
     model, idata = inference(model)
 
     # TODO: Analysis for glm result
-    idata.posterior["y_model"] = idata.posterior["intercept"] + idata.posterior["slope"] * xr.DataArray(x)
+    idata.posterior["y_model"] = idata.posterior["intercept"] + idata.posterior[
+        "slope"
+    ] * xr.DataArray(x)
     fig, ax = plt.subplots(figsize=(7, 7))
     ax.set_title("Posterior predictive regression lines")
     az.plot_lm(idata=idata, y="y", num_samples=100, axes=ax, y_model="y_model")
